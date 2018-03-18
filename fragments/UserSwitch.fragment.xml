@@ -1,0 +1,24 @@
+<core:FragmentDefinition 
+    xmlns="sap.m" 
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:core="sap.ui.core">
+    <Dialog id="userSwitchDialog" title="{i18n>UserSwitchDialogTitle}">
+        <f:SimpleForm id="SimpleFormChange354" editable="false" layout="ResponsiveGridLayout" title="{i18n>UserSwitchFormTitle}" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+            <f:content>
+                <Label text="{i18n>UserSwitchFormFirstname}" />
+                <Text text="" />
+                <Label text="{i18n>UserSwitchFormLastname}" />
+                <Text text="" />
+                <Label text="{i18n>UserSwitchFormPortfolioid}" />
+                <Select id="country" selectedKey="{Country}">
+                    <items>
+                        <core:Item text="England" key="England"/>
+                        <core:Item text="Germany" key="Germany"/>
+                        <core:Item text="USA" key="USA"/>
+                    </items>
+                </Select>
+            </f:content>
+        </f:SimpleForm>
+    </Dialog>
+</core:FragmentDefinition>

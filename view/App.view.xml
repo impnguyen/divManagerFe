@@ -1,9 +1,67 @@
-<mvc:View controllerName="mpn.divManager.controller.App" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
-	displayBlock="true" xmlns="sap.m">
+<mvc:View controllerName="mpn.divManager.controller.App" 
+	xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" 
+	xmlns="sap.m">
 	<App>
 		<pages>
 			<Page title="{i18n>title}">
-				<content></content>
+				<headerContent>
+					<Button icon="sap-icon://customer" tooltip="{i18n>headerCustomerSwitchButton}" press="onOpenUserSwitchPressed" />
+				</headerContent>
+				<dependents>
+					<!-- user switch dialog -->
+					<core:Fragment fragmentName="mpn.divManager.fragments.UserSwitch" type="XML"/>
+				</dependents>
+				<content>
+					<!-- object header -->
+					<ObjectHeader title="{Name}" backgroundDesign="Solid" number="{parts:[{path:'Price'},{path:'CurrencyCode'}],					type: 'sap.ui.model.type.Currency',					formatOptions: {showMeasure: false}				}" numberUnit="{CurrencyCode}">
+						<attributes>
+							<ObjectAttribute title="Weight" text="{WeightMeasure} {WeightUnit}" />
+							<ObjectAttribute title="Dimensions" text="{Width} x {Depth} X {Height} {DimUnit}" />
+						</attributes>
+						<statuses>
+							<ObjectStatus title="Status" text="In Stock" state="Success" />
+						</statuses>
+					</ObjectHeader>
+					<!-- scrollable table -->
+					<ScrollContainer height="100%" width="100%" horizontal="false" vertical="true" focusable="true">
+						<Table id="idProductsTable" items="{divs>/value}">
+							<headerToolbar>
+								<Toolbar>
+									<content>
+										<ToolbarSpacer />
+										<Title text="{i18n>TableHeaderToolbarTitle}" level="H3"/>
+										<ToolbarSpacer />
+									</content>
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left">
+									<Text text="{i18n>columnPurpose}" />
+								</Column>
+								<Column hAlign="End" minScreenWidth="Phone">
+									<Text text="{i18n>columnValue}" />
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{divs>purpose}" />
+										<Text text="{divs>value}" />
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+				</content>
+				<footer>
+					<Toolbar>
+						<Text text="{i18n>footerDivSumText}" />
+						<ToolbarSpacer/>
+						<Text text="{divMeta>/sum}" />
+					</Toolbar>
+				</footer>
 			</Page>
 		</pages>
 	</App>
