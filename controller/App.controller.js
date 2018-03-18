@@ -3,7 +3,7 @@ sap.ui.define([
 ], function(Controller) {
 	"use strict";
 
-	return Controller.extend("mpndivManager.controller.App", {
+	return Controller.extend("mpn.divManager.controller.App", {
 
 	});
 });

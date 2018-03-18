@@ -1,7 +1,7 @@
 {
 	"_version": "1.7.0",
 	"sap.app": {
-		"id": "mpndivManager",
+		"id": "divManager",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"applicationVersion": {
@@ -39,7 +39,7 @@
 
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "mpndivManager.view.App",
+			"viewName": "mpn.divManager.view.App",
 			"type": "XML"
 		},
 		"dependencies": {
@@ -48,9 +48,6 @@
 				"sap.ui.core": {},
 				"sap.m": {},
 				"sap.ui.layout": {},
-				"sap.ushell": {},
-				"sap.collaboration": {},
-				"sap.ui.comp": {},
 				"sap.uxap": {}
 			}
 		},
@@ -62,7 +59,7 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "mpndivManager.i18n.i18n"
+					"bundleName": "mpn.divManager.i18n.i18n"
 				}
 			}
 		},
