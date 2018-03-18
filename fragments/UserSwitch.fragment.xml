@@ -11,14 +11,18 @@
                 <Label text="{i18n>UserSwitchFormLastname}" />
                 <Text text="" />
                 <Label text="{i18n>UserSwitchFormPortfolioid}" />
-                <Select id="country" selectedKey="{Country}">
+                <Select id="country" selectedKey="{Country}" items="{users>/value}">
                     <items>
-                        <core:Item text="England" key="England"/>
-                        <core:Item text="Germany" key="Germany"/>
-                        <core:Item text="USA" key="USA"/>
+                        <core:Item text="{users>firstname} {users>lastname} {users>portfolioid}" key="{users>portfolioid}"/>
                     </items>
                 </Select>
             </f:content>
         </f:SimpleForm>
+        <beginButton>
+            <Button text="{i18n>UserSwitchButtonText}" press="onSwitchUser" />
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>UserSwitchCancelButtonText}" press="onCancelDialog" />
+        </endButton>
     </Dialog>
 </core:FragmentDefinition>
