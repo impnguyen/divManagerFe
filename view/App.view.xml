@@ -15,13 +15,14 @@
 				</dependents>
 				<content>
 					<!-- object header -->
-					<ObjectHeader title="{Name}" backgroundDesign="Solid" number="{parts:[{path:'Price'},{path:'CurrencyCode'}],					type: 'sap.ui.model.type.Currency',					formatOptions: {showMeasure: false}				}" numberUnit="{CurrencyCode}">
+					<ObjectHeader title="{i18n>ObjectHeaderTitle}" backgroundDesign="Solid">
 						<attributes>
-							<ObjectAttribute title="Weight" text="{WeightMeasure} {WeightUnit}" />
-							<ObjectAttribute title="Dimensions" text="{Width} x {Depth} X {Height} {DimUnit}" />
+							<ObjectAttribute title="{i18n>ObjectHeaderFirstnameTitle}" text="{currentUser>/firstname}" />
+							<ObjectAttribute title="{i18n>ObjectHeaderlastnameTitle}" text="{currentUser>/lastname}" />
+							<ObjectAttribute title="{i18n>ObjectHeaderportIdTitle}" text="{currentUser>/portfolioid}" />
 						</attributes>
 						<statuses>
-							<ObjectStatus title="Status" text="In Stock" state="Success" />
+							<!-- <ObjectStatus title="Status" text="In Stock" state="Success" /> -->
 						</statuses>
 					</ObjectHeader>
 					<!-- scrollable table -->
@@ -40,6 +41,9 @@
 								<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left">
 									<Text text="{i18n>columnPurpose}" />
 								</Column>
+								<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left">
+									<Text text="{i18n>columnValuta}" />
+								</Column>
 								<Column hAlign="End" minScreenWidth="Phone">
 									<Text text="{i18n>columnValue}" />
 								</Column>
@@ -48,6 +52,7 @@
 								<ColumnListItem>
 									<cells>
 										<Text text="{divs>purpose}" />
+										<Text text="{divs>valutaDate}" />
 										<Text text="{divs>value}" />
 									</cells>
 								</ColumnListItem>
@@ -59,7 +64,7 @@
 					<Toolbar>
 						<Text text="{i18n>footerDivSumText}" />
 						<ToolbarSpacer/>
-						<Text text="{divMeta>/sum}" />
+						<Text text="{divMeta>/sum} €" />
 					</Toolbar>
 				</footer>
 			</Page>

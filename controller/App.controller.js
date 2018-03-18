@@ -3,38 +3,92 @@ sap.ui.define(
   function(Controller, JSONModel) {
     "use strict";
     return Controller.extend("mpn.divManager.controller.App", {
+      /**
+       * setup models in onInit Hook
+       */
       onInit: function() {
-        this.setupDividends();
-        this.setupUsers();
+        this.setupModels();
       },
 
-      onAfterRendering: function() {},
+      /**
+       * setup odata models
+       */
+      setupModels: function(selectedUser) {
+        this.getView().setBusy(true);
+        this.setupUsers()
+          .then(usersData => {
+            this.getView().setModel(new JSONModel(usersData), "users");
+            var tmpUser = {};
 
-      setupDividends: function() {
-        //get dividends
-        fetch(
-          "http://localhost:3001/dividends?$filter= portfolioid eq '468041986'"
-        )
-          .then(response => {
-            return response.json();
+            if (selectedUser === undefined) {
+              tmpUser = usersData.value[0];
+            } else {
+              tmpUser = selectedUser;
+            }
+
+            this.getView().setModel(new JSONModel(tmpUser), "currentUser");
+            return this.setupDividends(
+              this.getView().getModel("currentUser").getData().portfolioid
+            );
           })
-          .then(json => {
-            this.getView().setModel(new JSONModel(json), "divs");
+          .then(dividendsData => {
+            this.getView().setModel(new JSONModel(dividendsData), "divs");
             this.setupDividendMeta();
-          });
-      },
-
-      setupUsers: function() {
-        //get users
-        fetch("http://localhost:3001/users")
-          .then(response => {
-            return response.json();
           })
-          .then(json => {
-            this.getView().setModel(new JSONModel(json), "users");
+          .catch(error => {
+            console.error(error);
+          })
+          .then(() => {
+            this.getView().setBusy(false);
           });
       },
 
+      /**
+       * get dividends
+       */
+      setupDividends: function(portfolioid) {
+        var promise = new Promise((resolve, reject) => {
+          fetch(
+            `http://localhost:3001/dividends?$filter= portfolioid eq ${portfolioid}`
+          )
+            .then(response => {
+              return response.json();
+            })
+            .then(json => {
+              resolve(json);
+            })
+            .catch(error => {
+              reject(error);
+            });
+        });
+
+        return promise;
+      },
+
+      /**
+       * get users
+       */
+      setupUsers: function() {
+        var promise = new Promise((resolve, reject) => {
+          fetch("http://localhost:3001/users")
+            .then(response => {
+              return response.json();
+            })
+            .then(json => {
+              resolve(json);
+            })
+            .catch(error => {
+              reject(error);
+            });
+        });
+
+        return promise;
+      },
+
+      /**
+       * setup metainformation for dividends model
+       * for example dividends sum
+       */
       setupDividendMeta: function() {
         var divData = this.getView().getModel("divs").getData().value;
         var divMeta = {
@@ -44,7 +98,6 @@ sap.ui.define(
         for (let i = 0; i < divData.length; i++) {
           divMeta.sum = divMeta.sum + divData[i].value;
         }
-        console.log(divMeta.sum);
 
         this.getView().setModel(new JSONModel(divMeta), "divMeta");
       },
@@ -54,6 +107,18 @@ sap.ui.define(
       },
 
       onSwitchUser: function(oEvent) {
+        var selPath = this.getView()
+          .byId("userSelect")
+          .getSelectedItem()
+          .getBindingContext("users")
+          .getPath();
+        var model = this.getView()
+          .byId("userSelect")
+          .getSelectedItem()
+          .getBindingContext("users")
+          .getModel();
+
+        this.setupModels(model.getProperty(selPath));
         oEvent.getSource().getParent().close();
       },
 
