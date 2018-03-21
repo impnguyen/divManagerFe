@@ -41,9 +41,9 @@
 							</headerToolbar>
 							<columns>
 								<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left">
-									<Text text="{i18n>columnPurpose}" />
+									<Text text="{i18n>columnSecurity}" />
 								</Column>
-								<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left">
+								<Column minScreenWidth="Phone" demandPopin="true" hAlign="Right">
 									<Text text="{i18n>columnValuta}" />
 								</Column>
 								<Column hAlign="End" minScreenWidth="Phone">
@@ -53,7 +53,7 @@
 							<items>
 								<ColumnListItem>
 									<cells>
-										<Text text="{divs>purpose}" />
+										<Text text="{divs>security}" />
 										<Text text="{divs>valutaDate}" />
 										<Text text="{divs>value}" />
 									</cells>
