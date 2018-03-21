@@ -10,6 +10,8 @@
 					<Button icon="sap-icon://customer" tooltip="{i18n>headerCustomerSwitchButton}" press="onOpenUserSwitchPressed" />
 				</headerContent>
 				<dependents>
+					<!-- intial user selection dialog -->
+					<core:Fragment fragmentName="mpn.divManager.fragments.InitialUserSelection" type="XML"/>
 					<!-- user switch dialog -->
 					<core:Fragment fragmentName="mpn.divManager.fragments.UserSwitch" type="XML"/>
 				</dependents>

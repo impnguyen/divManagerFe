@@ -7,7 +7,13 @@ sap.ui.define(
        * setup models in onInit Hook
        */
       onInit: function() {
-        this.setupModels();
+        //setup users
+        this.setupUsers()
+          .then((oData, oResponse) => {
+            //setup ui: set model to view and open dialog
+            this.setupUi(oData);
+          })
+          .catch(error => {});
       },
 
       /**
@@ -118,11 +124,60 @@ sap.ui.define(
           .getBindingContext("users")
           .getModel();
 
-        this.setupModels(model.getProperty(selPath));
+        //setup dividends model
+        this.setupDividends(model.getProperty(selPath).portfolioid)
+          .then(oDividendsData => {
+            this.getView().setModel(new JSONModel(oDividendsData), "divs");
+            this.setupDividendMeta();
+          })
+          .catch(() => {});
         oEvent.getSource().getParent().close();
       },
 
       onCancelDialog: function(oEvent) {
+        oEvent.getSource().getParent().close();
+      },
+
+      /**
+       * open user dialog
+       */
+      setupUi: function(oUsersData) {
+        this.getView().setModel(new JSONModel(oUsersData), "users");
+        this.byId("initUserSelection").open();
+      },
+
+      /**
+       * on select initial user and setup model
+       */
+      onSelectInitUser: function(oEvent) {
+        var selPath = this.getView()
+          .byId("userSelect")
+          .getSelectedItem()
+          .getBindingContext("users")
+          .getPath();
+        var model = this.getView()
+          .byId("userSelect")
+          .getSelectedItem()
+          .getBindingContext("users")
+          .getModel();
+        var oSelUser = model.getProperty(selPath);
+
+        this.getView().setModel(new JSONModel(oSelUser), "currentUser");
+
+        //setup dividends model
+        this.setupDividends(oSelUser.portfolioid)
+          .then(oDividendsData => {
+            this.getView().setModel(new JSONModel(oDividendsData), "divs");
+            this.setupDividendMeta();
+          })
+          .catch(() => {});
+        oEvent.getSource().getParent().close();
+      },
+
+      /**
+       * close init user dialog
+       */
+      onCancelInitUserDialog: function(oEvent) {
         oEvent.getSource().getParent().close();
       }
     });
