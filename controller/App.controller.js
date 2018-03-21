@@ -104,6 +104,7 @@ sap.ui.define(
         for (let i = 0; i < divData.length; i++) {
           divMeta.sum = divMeta.sum + divData[i].value;
         }
+        divMeta.sum = divMeta.sum.toFixed(2);
 
         this.getView().setModel(new JSONModel(divMeta), "divMeta");
       },
