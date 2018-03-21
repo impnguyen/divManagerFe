@@ -113,6 +113,9 @@ sap.ui.define(
         this.byId("userSwitchDialog").open();
       },
 
+      /**
+       * reload model and refresh binding
+       */
       onSwitchUser: function(oEvent) {
         var selPath = this.getView()
           .byId("userSelect")
@@ -124,6 +127,11 @@ sap.ui.define(
           .getSelectedItem()
           .getBindingContext("users")
           .getModel();
+
+        this.getView().setModel(
+          new JSONModel(model.getProperty(selPath)),
+          "currentUser"
+        );
 
         //setup dividends model
         this.setupDividends(model.getProperty(selPath).portfolioid)
@@ -172,13 +180,6 @@ sap.ui.define(
             this.setupDividendMeta();
           })
           .catch(() => {});
-        oEvent.getSource().getParent().close();
-      },
-
-      /**
-       * close init user dialog
-       */
-      onCancelInitUserDialog: function(oEvent) {
         oEvent.getSource().getParent().close();
       }
     });

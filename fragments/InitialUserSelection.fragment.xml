@@ -18,7 +18,6 @@
             <Button text="{i18n>InitUserSwitchButtonText}" press="onSelectInitUser" />
         </beginButton>
         <endButton>
-            <Button text="{i18n>InitUserSwitchCancelButtonText}" press="onCancelInitUserDialog" />
         </endButton>
     </Dialog>
 </core:FragmentDefinition>
