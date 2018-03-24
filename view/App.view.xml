@@ -14,6 +14,8 @@
 					<core:Fragment fragmentName="mpn.divManager.fragments.InitialUserSelection" type="XML"/>
 					<!-- user switch dialog -->
 					<core:Fragment fragmentName="mpn.divManager.fragments.UserSwitch" type="XML"/>
+					<!-- stock detail dialog -->
+					<core:Fragment fragmentName="mpn.divManager.fragments.StockDetails" type="XML"/>
 				</dependents>
 				<content>
 					<!-- object header -->
@@ -29,7 +31,7 @@
 					</ObjectHeader>
 					<!-- scrollable table -->
 					<ScrollContainer height="100%" width="100%" horizontal="false" vertical="true" focusable="true">
-						<Table id="idProductsTable" items="{divs>/value}">
+						<Table id="idProductsTable" items="{divs>/value}" busyIndicatorDelay="0">
 							<headerToolbar>
 								<Toolbar>
 									<content>

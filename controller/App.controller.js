@@ -184,11 +184,14 @@ sap.ui.define(
       },
 
       /**
-       * on press title
+       * on press title:
+       * fetch details
+       * open details dialog
        */
       onPressSecurityTitle: function (oEvent) {
-        var sWkn = oEvent.getSource().getProperty('text');
+        this.byId('idProductsTable').setBusy(true);
 
+        const sWkn = oEvent.getSource().getProperty('text');
         const myRequest = new Request('http://localhost:3003/getDetails?wkn=' + sWkn, {
           method: 'get'
         });
@@ -200,10 +203,21 @@ sap.ui.define(
           .then((oData) => {
             console.log(oData);
             this.getView().setModel(new JSONModel(oData), 'details');
+            this.byId('stockDetailDialog').open();
           })
           .catch((e) => {
             console.error(e);
+          })
+          .then(() => {
+            this.byId('idProductsTable').setBusy();
           });
+      },
+
+      /**
+       * close details
+       */
+      onCancelStockDetails: function (oEvent) {
+        oEvent.getSource().getParent().close();
       }
     });
   }
