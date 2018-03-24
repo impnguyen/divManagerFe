@@ -53,7 +53,7 @@
 							<items>
 								<ColumnListItem>
 									<cells>
-										<Text text="{divs>security}" />
+										<ObjectIdentifier title="{divs>security}" text="{divs>wkn}" titleActive="true" titlePress="onPressSecurityTitle"/>
 										<Text text="{divs>valutaDate}" />
 										<Text text="{divs>value}" />
 									</cells>
