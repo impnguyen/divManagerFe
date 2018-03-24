@@ -2,13 +2,18 @@
     xmlns="sap.m" 
     xmlns:f="sap.ui.layout.form" 
     xmlns:l="sap.ui.layout" 
+    xmlns:uxap="sap.uxap" 
     xmlns:core="sap.ui.core">
     <Dialog id="stockDetailDialog" title="{i18n>stockDetailDialogTitle}" stretch="true">
         <f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
             <f:content>
                 <IconTabBar id="idIconTabBarInlineMode" headerMode="Inline" upperCase="false" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" expandable="false" headerBackgroundDesign="Translucent" backgroundDesign="Translucent">
                     <items>
-                        <IconTabFilter text="Kursnotierung"></IconTabFilter>
+                        <IconTabFilter text="Kursnotierung">
+                            <!-- stock quote fragment -->
+                            <core:Fragment fragmentName="mpn.divManager.fragments.StockQuote" type="XML"/>
+                        </IconTabFilter>
+                        <!-- company profile -->
                         <IconTabFilter text="Unternehmensprofil">
                             <f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
                                 <f:content>
