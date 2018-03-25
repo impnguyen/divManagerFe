@@ -7,34 +7,37 @@
         <headerTitle>
             <ObjectPageHeader objectImageURI="{details>/iext/logoUrl/url}" objectImageShape="Circle" objectTitle="Denise Smith" objectImageAlt="Senior UI Developer" id="ObjectPageLayoutHeaderTitle" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false" showPlaceholder="true">
                 <actions>
-                    <ObjectPageHeaderActionButton icon="sap-icon://pull-down" text="show section" type="Emphasized"/>
-                    <ObjectPageHeaderActionButton icon="sap-icon://show" text="show state" type="Emphasized"/>
+                    <!-- <ObjectPageHeaderActionButton icon="sap-icon://pull-down" text="show section" type="Emphasized"/><ObjectPageHeaderActionButton icon="sap-icon://show" text="show state" type="Emphasized"/> -->
                 </actions>
             </ObjectPageHeader>
         </headerTitle>
         <headerContent>
             <layout:VerticalLayout>
-                <m:ObjectStatus title="User ID" text="12345678"/>
-                <m:ObjectStatus title="Language" text="English"/>
-                <m:ObjectStatus title="Country" text="USA"/>
-                <m:ObjectStatus title="Phone Number" text="1-844-726-7733"/>
+                <m:ObjectStatus title="Martkap." text="{
+						path: 'details>/iext/quote/marketCap',
+						formatter: '.formatter.shortMrd'
+					} $"/>
             </layout:VerticalLayout>
             <layout:VerticalLayout>
                 <layout:layoutData>
-                    <ObjectPageHeaderLayoutData visibleS="false"/>
+                    <ObjectPageHeaderLayoutData visibleS="true"/>
                 </layout:layoutData>
-                <m:ObjectStatus title="Functional Area" text="Developement"/>
-                <m:ObjectStatus title="Cost Center" text="PI DFA GD Programs and Product"/>
-                <m:ObjectStatus title="Email" text="email@address.com"/>
-                <m:Token text="Visible on M and L size"/>
+                <m:ObjectStatus title="52 Wochentief" text="{details>/iext/quote/week52Low} $"/>
+                <m:ObjectStatus title="52 Wochenhoch" text="{details>/iext/quote/week52High} $"/>
+                <m:ObjectStatus title="seit Jahresanfang" text="{
+						path: 'details>/iext/quote/ytdChange',
+						formatter: '.formatter.shortDecimals'
+					}%" state="{
+						path: 'details>/iext/quote/ytdChange',
+						formatter: '.formatter.setState'
+					}"/>
             </layout:VerticalLayout>
             <layout:VerticalLayout>
                 <layout:layoutData>
-                    <ObjectPageHeaderLayoutData visibleS="false" visibleM="false"/>
+                    <ObjectPageHeaderLayoutData visibleS="true" visibleM="true"/>
                 </layout:layoutData>
                 <m:ObjectStatus text="Senior UI Developer" state="Success"/>
                 <m:RatingIndicator maxValue="6" class="sapUiSmallMarginBottom" value="5" tooltip="Rating Tooltip"/>
-                <m:Token text="Visible on L size"/>
             </layout:VerticalLayout>
         </headerContent>
         <sections>

@@ -1,12 +1,19 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/ui/model/json/JSONModel"],
-  function (Controller, JSONModel) {
+  [
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/model/json/JSONModel",
+    "mpn/divManager/model/formatter"
+  ],
+  function(Controller, JSONModel, formatter) {
     "use strict";
     return Controller.extend("mpn.divManager.controller.App", {
+
+      formatter: formatter, 
+      
       /**
        * setup models in onInit Hook
        */
-      onInit: function () {
+      onInit: function() {
         //setup users
         this.setupUsers()
           .then((oData, oResponse) => {
@@ -19,7 +26,7 @@ sap.ui.define(
       /**
        * setup odata models
        */
-      setupModels: function (selectedUser) {
+      setupModels: function(selectedUser) {
         this.getView().setBusy(true);
         this.setupUsers()
           .then(usersData => {
@@ -52,11 +59,11 @@ sap.ui.define(
       /**
        * get dividends
        */
-      setupDividends: function (portfolioid) {
+      setupDividends: function(portfolioid) {
         var promise = new Promise((resolve, reject) => {
           fetch(
-              `http://localhost:3001/dividends?$filter= portfolioid eq ${portfolioid}`
-            )
+            `http://localhost:3001/dividends?$filter= portfolioid eq ${portfolioid}`
+          )
             .then(response => {
               return response.json();
             })
@@ -74,7 +81,7 @@ sap.ui.define(
       /**
        * get users
        */
-      setupUsers: function () {
+      setupUsers: function() {
         var promise = new Promise((resolve, reject) => {
           fetch("http://localhost:3001/users")
             .then(response => {
@@ -95,7 +102,7 @@ sap.ui.define(
        * setup metainformation for dividends model
        * for example dividends sum
        */
-      setupDividendMeta: function () {
+      setupDividendMeta: function() {
         var divData = this.getView().getModel("divs").getData().value;
         var divMeta = {
           sum: 0
@@ -109,14 +116,14 @@ sap.ui.define(
         this.getView().setModel(new JSONModel(divMeta), "divMeta");
       },
 
-      onOpenUserSwitchPressed: function (oEvent) {
+      onOpenUserSwitchPressed: function(oEvent) {
         this.byId("userSwitchDialog").open();
       },
 
       /**
        * reload model and refresh binding
        */
-      onSwitchUser: function (oEvent) {
+      onSwitchUser: function(oEvent) {
         var selPath = this.getView()
           .byId("userSelect")
           .getSelectedItem()
@@ -143,14 +150,14 @@ sap.ui.define(
         oEvent.getSource().getParent().close();
       },
 
-      onCancelDialog: function (oEvent) {
+      onCancelDialog: function(oEvent) {
         oEvent.getSource().getParent().close();
       },
 
       /**
        * open user dialog
        */
-      setupUi: function (oUsersData) {
+      setupUi: function(oUsersData) {
         this.getView().setModel(new JSONModel(oUsersData), "users");
         this.byId("initUserSelection").open();
       },
@@ -158,7 +165,7 @@ sap.ui.define(
       /**
        * on select initial user and setup model
        */
-      onSelectInitUser: function (oEvent) {
+      onSelectInitUser: function(oEvent) {
         var selPath = this.getView()
           .byId("initUserSelect")
           .getSelectedItem()
@@ -188,35 +195,38 @@ sap.ui.define(
        * fetch details
        * open details dialog
        */
-      onPressSecurityTitle: function (oEvent) {
-        this.byId('idProductsTable').setBusy(true);
+      onPressSecurityTitle: function(oEvent) {
+        this.byId("idProductsTable").setBusy(true);
 
-        const sWkn = oEvent.getSource().getProperty('text');
-        const myRequest = new Request('http://localhost:3003/getDetails?wkn=' + sWkn, {
-          method: 'get'
-        });
+        const sWkn = oEvent.getSource().getProperty("text");
+        const myRequest = new Request(
+          "http://localhost:3003/getDetails?wkn=" + sWkn,
+          {
+            method: "get"
+          }
+        );
 
         fetch(myRequest)
           .then(response => {
             return response.json();
           })
-          .then((oData) => {
+          .then(oData => {
             console.log(oData);
-            this.getView().setModel(new JSONModel(oData), 'details');
-            this.byId('stockDetailDialog').open();
+            this.getView().setModel(new JSONModel(oData), "details");
+            this.byId("stockDetailDialog").open();
           })
-          .catch((e) => {
+          .catch(e => {
             console.error(e);
           })
           .then(() => {
-            this.byId('idProductsTable').setBusy();
+            this.byId("idProductsTable").setBusy();
           });
       },
 
       /**
        * close details
        */
-      onCancelStockDetails: function (oEvent) {
+      onCancelStockDetails: function(oEvent) {
         oEvent.getSource().getParent().close();
       }
     });
