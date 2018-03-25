@@ -160,12 +160,12 @@ sap.ui.define(
        */
       onSelectInitUser: function (oEvent) {
         var selPath = this.getView()
-          .byId("userSelect")
+          .byId("initUserSelect")
           .getSelectedItem()
           .getBindingContext("users")
           .getPath();
         var model = this.getView()
-          .byId("userSelect")
+          .byId("initUserSelect")
           .getSelectedItem()
           .getBindingContext("users")
           .getModel();
