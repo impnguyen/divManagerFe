@@ -1,0 +1,34 @@
+<core:FragmentDefinition 
+    xmlns="sap.m" 
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:core="sap.ui.core">
+    <Dialog id="userSwitchDialog" title="{i18n>UserSwitchDialogTitle}">
+        <f:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>UserSwitchFormTitle}" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+            <f:content>
+                <Label text="{i18n>UserSwitchFormFirstname}" />
+                <Text text="{currentUser>/firstname}" />
+                <Label text="{i18n>UserSwitchFormLastname}" />
+                <Text text="{currentUser>/lastname}" />
+                <Label text="{i18n>UserSwitchFormPortfolioid}" />
+                <Text text="{currentUser>/firstname}" />
+            </f:content>
+        </f:SimpleForm>
+        <f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+            <f:content>
+                <Label text="{i18n>UserSwitchFormSelectUser}" />
+                <Select showSecondaryValues="true" selectedKey="{Country}" items="{users>/value}" id="userSelect">
+                    <items>
+                        <core:ListItem text="{users>firstname} {users>lastname}" additionalText="{users>portfolioid}" key="{users>portfolioid}"/>
+                    </items>
+                </Select>
+            </f:content>
+        </f:SimpleForm>
+        <beginButton>
+            <Button text="{i18n>UserSwitchButtonText}" press="onSwitchUser" />
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>UserSwitchCancelButtonText}" press="onCancelDialog" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
