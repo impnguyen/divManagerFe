@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "dividends manager",
   "main": "index.html",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "grulp": "^1.0.0",
+    "gulp": "^3.9.1",
     "gulp-eslint": "^4.0.2"
   },
   "scripts": {
