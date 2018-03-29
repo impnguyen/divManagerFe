@@ -5,7 +5,7 @@
   const clean = require("gulp-clean");
   const replace = require("gulp-replace");
   const ui5preload = require("gulp-ui5-preload");
-  const uglify = require("gulp-uglify");
+  //const uglify = require("gulp-uglify");
   const prettydata = require("gulp-pretty-data");
   const gulpif = require("gulp-if");
 
