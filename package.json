@@ -1,0 +1,29 @@
+{
+  "name": "dividendmanager-fe",
+  "version": "1.0.0",
+  "description": "dividends manager",
+  "main": "index.html",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "grulp": "^1.0.0",
+    "gulp-eslint": "^4.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/impnguyen/divManagerFe.git"
+  },
+  "keywords": [
+    "dividends",
+    "manager"
+  ],
+  "author": "Manh Phuoc Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/impnguyen/divManagerFe/issues"
+  },
+  "homepage": "https://github.com/impnguyen/divManagerFe#readme"
+}
