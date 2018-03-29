@@ -4,6 +4,10 @@
   const eslint = require("gulp-eslint");
   const clean = require("gulp-clean");
   const replace = require("gulp-replace");
+  const ui5preload = require("gulp-ui5-preload");
+  const uglify = require("gulp-uglify");
+  const prettydata = require("gulp-pretty-data");
+  const gulpif = require("gulp-if");
 
   const env = {
     buildPath: "build",
@@ -46,5 +50,14 @@
       .src(`${env.buildPath}/**/*`)
       .pipe(replace("localhost", env.srvBaseUrl))
       .pipe(gulp.dest("build/"));
+  });
+
+  gulp.task("ui5preload", function() {
+    return gulp
+      .src([`${env.buildPath}/**/**.+(js|xml)`])
+      //.pipe(gulpif("**/*.js", uglify()))
+      .pipe(gulpif("**/*.xml", prettydata({ type: "minify" })))
+      .pipe(ui5preload({ base: `${env.buildPath}/`, namespace: "mpn.divManager" }))
+      .pipe(gulp.dest(env.buildPath));
   });
 })();
