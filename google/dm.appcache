@@ -1,0 +1,9 @@
+CACHE MANIFEST
+./index.html
+./manifest.json
+./Component.js
+./Component-preload.js
+
+NETWORK
+
+FALLBACK
