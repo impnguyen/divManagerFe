@@ -1,5 +1,11 @@
 CACHE MANIFEST
 ../libs/openui5-runtime-1.52.9/resources/sap-ui-core.js
+../libs/openui5-runtime-1.52.9/resources/sap-ui-version.json
+../libs/openui5-runtime-1.52.9/resources/sap/ui/core/library.js
+../libs/openui5-runtime-1.52.9/resources/sap/m/library-preload.json
+../libs/openui5-runtime-1.52.9/resources/sap/m/library-preload.js
+../libs/openui5-runtime-1.52.9/resources/sap/ui/core/library-preload.json
+../libs/openui5-runtime-1.52.9/resources/sap/ui/core/library-preload.js
 
 index.html
 manifest.json
