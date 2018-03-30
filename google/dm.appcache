@@ -1,9 +1,12 @@
 CACHE MANIFEST
-./index.html
-./manifest.json
-./Component.js
-./Component-preload.js
+ # 2018-03-30 v0.0.1
 
-NETWORK
+CACHE:
+../index.html
+../manifest.json
+../Component.js
+../Component-preload.js
 
-FALLBACK
+NETWORK:
+
+FALLBACK:
