@@ -2,10 +2,10 @@ CACHE MANIFEST
  # 2018-03-30 v0.0.1
 
 CACHE:
-../index.html
-../manifest.json
-../Component.js
-../Component-preload.js
+index.html
+manifest.json
+Component.js
+Component-preload.js
 
 NETWORK:
 
