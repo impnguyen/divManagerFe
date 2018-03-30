@@ -1,12 +1,10 @@
 CACHE MANIFEST
- # 2018-03-30 v0.0.1
+../resources/sap-ui-core.js
 
-CACHE:
 index.html
 manifest.json
 Component.js
 Component-preload.js
 
 NETWORK:
-
-FALLBACK:
+*
