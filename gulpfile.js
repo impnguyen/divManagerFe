@@ -25,7 +25,8 @@
       "*view/**/*",
       "Component.js",
       "index.html",
-      "manifest.json"
+      "manifest.json",
+      "manifest.appcache"
     ],
     lintSrcFiles: ["**/*.js", "!node_modules/**"]
   };
