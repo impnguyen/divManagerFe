@@ -12,6 +12,7 @@
   const env = {
     buildPath: "build",
     appEntry: "index.html",
+    ui5Resource: "../libs/openui5-runtime-1.52.9/resources/sap-ui-core.js",
     srvBaseUrl: "192.168.20.20",
     copySrcFiles: [
       "*controller/**/*",
@@ -52,12 +53,26 @@
       .pipe(gulp.dest("build/"));
   });
 
+  gulp.task("replaceUi5Lib", () => {
+    gulp
+      .src(`${env.buildPath}/${env.appEntry}`)
+      .pipe(
+        replace(
+          "https://openui5.hana.ondemand.com/1.52.9/resources/sap-ui-core.js",
+          env.ui5Resource
+        )
+      )
+      .pipe(gulp.dest("build/"));
+  });
+
   gulp.task("ui5preload", function() {
-    return gulp
-      .src([`${env.buildPath}/**/**.+(js|xml)`])
-      //.pipe(gulpif("**/*.js", uglify()))
-      .pipe(gulpif("**/*.xml", prettydata({ type: "minify" })))
-      .pipe(ui5preload({ base: `${env.buildPath}/`, namespace: "mpn.divManager" }))
-      .pipe(gulp.dest(env.buildPath));
+    return (gulp
+        .src([`${env.buildPath}/**/**.+(js|xml)`])
+        //.pipe(gulpif("**/*.js", uglify()))
+        .pipe(gulpif("**/*.xml", prettydata({ type: "minify" })))
+        .pipe(
+          ui5preload({ base: `${env.buildPath}/`, namespace: "mpn.divManager" })
+        )
+        .pipe(gulp.dest(env.buildPath)) );
   });
 })();
