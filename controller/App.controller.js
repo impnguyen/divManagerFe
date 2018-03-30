@@ -25,6 +25,7 @@ sap.ui.define(
 
       /**
        * setup odata models
+       * @param  {Object} selectedUser selected user as input object
        */
       setupModels: function(selectedUser) {
         this.getView().setBusy(true);
@@ -57,7 +58,9 @@ sap.ui.define(
       },
 
       /**
-       * get dividends
+       *  get dividends
+       * @param  {String} portfolioid portfolio id from user object
+       * @return {Promise} promise object of dividends request
        */
       setupDividends: function(portfolioid) {
         var promise = new Promise((resolve, reject) => {
@@ -80,6 +83,7 @@ sap.ui.define(
 
       /**
        * get users
+       * @return {Promise} a promise object for users request
        */
       setupUsers: function() {
         var promise = new Promise((resolve, reject) => {
@@ -122,6 +126,7 @@ sap.ui.define(
 
       /**
        * reload model and refresh binding
+       * @param  {Object} oEvent on switch user button press event
        */
       onSwitchUser: function(oEvent) {
         var selPath = this.getView()
@@ -150,12 +155,16 @@ sap.ui.define(
         oEvent.getSource().getParent().close();
       },
 
+      /**
+       * @param  {Object} oEvent on cancel dialog press event
+       */
       onCancelDialog: function(oEvent) {
         oEvent.getSource().getParent().close();
       },
 
       /**
        * open user dialog
+       * @param  {Object} oUsersData selected user data object
        */
       setupUi: function(oUsersData) {
         this.getView().setModel(new JSONModel(oUsersData), "users");
@@ -164,6 +173,7 @@ sap.ui.define(
 
       /**
        * on select initial user and setup model
+       * @param  {Object} oEvent on select initial user object event
        */
       onSelectInitUser: function(oEvent) {
         var selPath = this.getView()
@@ -194,6 +204,7 @@ sap.ui.define(
        * on press title:
        * fetch details
        * open details dialog
+       * @param  {Object} oEvent on press security/stocks title event
        */
       onPressSecurityTitle: function(oEvent) {
         this.byId("idProductsTable").setBusy(true);
@@ -222,9 +233,10 @@ sap.ui.define(
             this.byId("idProductsTable").setBusy();
           });
       },
-
+      
       /**
        * close details
+       * @param  {Object} oEvent on cancel stocks details dialog event
        */
       onCancelStockDetails: function(oEvent) {
         oEvent.getSource().getParent().close();

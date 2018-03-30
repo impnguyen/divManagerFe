@@ -1,0 +1,25 @@
+CACHE MANIFEST
+../libs/openui5-runtime-1.52.9/resources/sap-ui-core.js
+../libs/openui5-runtime-1.52.9/resources/sap-ui-version.json
+../libs/openui5-runtime-1.52.9/resources/sap/ui/core/library.js
+../libs/openui5-runtime-1.52.9/resources/sap/m/library-preload.json
+../libs/openui5-runtime-1.52.9/resources/sap/m/library-preload.js
+../libs/openui5-runtime-1.52.9/resources/sap/ui/core/library-preload.json
+../libs/openui5-runtime-1.52.9/resources/sap/ui/core/library-preload.js
+../libs/openui5-runtime-1.52.9/resources/sap/ui/layout/library.js
+../libs/openui5-runtime-1.52.9/resources/sap/ui/layout/library-preload.json
+../libs/openui5-runtime-1.52.9/resources/sap/ui/layout/library-preload.js
+../libs/openui5-runtime-1.52.9/resources/sap/m/themes/sap_belize/library-parameters.json
+../libs/openui5-runtime-1.52.9/resources/sap/ui/core/themes/sap_belize/library-parameters.json
+../libs/openui5-runtime-1.52.9/resources/sap/uxap/library.js
+../libs/openui5-runtime-1.52.9/resources/sap/uxap/library-preload.json
+../libs/openui5-runtime-1.52.9/resources/sap/uxap/library-preload.js
+
+index.html
+manifest.json
+Component.js
+Component-preload.js
+/Dm/i18n/i18n.properties
+
+NETWORK:
+*
