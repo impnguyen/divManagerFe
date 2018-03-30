@@ -11,6 +11,9 @@ CACHE MANIFEST
 ../libs/openui5-runtime-1.52.9/resources/sap/ui/layout/library-preload.js
 ../libs/openui5-runtime-1.52.9/resources/sap/m/themes/sap_belize/library-parameters.json
 ../libs/openui5-runtime-1.52.9/resources/sap/ui/core/themes/sap_belize/library-parameters.json
+../libs/openui5-runtime-1.52.9/resources/sap/uxap/library.js
+../libs/openui5-runtime-1.52.9/resources/sap/uxap/library-preload.json
+../libs/openui5-runtime-1.52.9/resources/sap/uxap/library-preload.js
 
 index.html
 manifest.json
