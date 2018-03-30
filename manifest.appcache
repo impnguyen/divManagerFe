@@ -1,5 +1,5 @@
 CACHE MANIFEST
-../resources/sap-ui-core.js
+../libs/openui5-runtime-1.52.9/resources/sap-ui-core.js
 
 index.html
 manifest.json
