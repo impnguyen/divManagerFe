@@ -1,13 +1,14 @@
 (function() {
   "use strict";
-  const gulp = require("gulp");
-  const eslint = require("gulp-eslint");
-  const clean = require("gulp-clean");
-  const replace = require("gulp-replace");
-  const ui5preload = require("gulp-ui5-preload");
-  //const uglify = require("gulp-uglify");
-  const prettydata = require("gulp-pretty-data");
-  const gulpif = require("gulp-if");
+  const gulp = require("gulp"),
+    eslint = require("gulp-eslint"),
+    clean = require("gulp-clean"),
+    replace = require("gulp-replace"),
+    ui5preload = require("gulp-ui5-preload"),
+    prettydata = require("gulp-pretty-data"),
+    gulpif = require("gulp-if"),
+    connect = require("gulp-connect"),
+    proxy = require("http-proxy-middleware");
 
   const env = {
     buildPath: "build",
@@ -67,13 +68,31 @@
   });
 
   gulp.task("ui5preload", function() {
-    return (gulp
+    return (
+      gulp
         .src([`${env.buildPath}/**/**.+(js|xml)`])
         //.pipe(gulpif("**/*.js", uglify()))
         .pipe(gulpif("**/*.xml", prettydata({ type: "minify" })))
         .pipe(
           ui5preload({ base: `${env.buildPath}/`, namespace: "mpn.divManager" })
         )
-        .pipe(gulp.dest(env.buildPath)) );
+        .pipe(gulp.dest(env.buildPath))
+    );
   });
+
+  gulp.task("connect", function() {
+    connect.server({
+      livereload: true,
+      middleware: function(connect, opt) {
+        return [
+          proxy("/api", {
+            target: "http://google.de",
+            changeOrigin: true
+          })
+        ];
+      }
+    });
+  });
+
+  gulp.task("default", ["connect"]);
 })();
