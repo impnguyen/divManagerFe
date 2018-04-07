@@ -1,15 +1,21 @@
 {
-    "short_name": "DM",
-    "name": "Dividends Manager",
-    "icons": [{
-        "src": "../icons/moneyou.png",
-        "type": "image/png",
-        "sizes": "256x256"
-    }],
-    "start_url": "../index.html",
-    "background_color": "#ffffff",
-    "display": "standalone",
-    "orientation": "portrait",
-    "theme_color": "#ffffff"
-
+  "short_name": "Dm",
+  "name": "Dividends Manager",
+  "icons": [
+    {
+      "src": "../icons/get-money128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "../icons/get-money128.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    }
+  ],
+  "start_url": "../index.html",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#4286f4"
 }
