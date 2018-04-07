@@ -1,0 +1,20 @@
+<mvc:View controllerName="mpn.divManager.controller.FileUpload" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:u="sap.ui.unified" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m">
+    <l:VerticalLayout>
+        <Text text="{i18n>fileUploaderDescr}"></Text>
+        <u:FileUploader id="fileUploader" name="myFileUpload" uploadUrl="upload/" uploadComplete="handleUploadComplete" change="handleValueChange" typeMissmatch="handleTypeMissmatch" style="Emphasized" fileType="txt,jpg" placeholder="{i18n>fileUploaderPlaceholder}">
+            <u:parameters>
+                <u:FileUploaderParameter name="param1" value="Foo"/>
+                <u:FileUploaderParameter name="param2" value="bar"/>
+            </u:parameters>
+            <u:headerParameters>
+                <u:FileUploaderParameter name="headerParam1" value="Foo"/>
+                <u:FileUploaderParameter name="headerParam2" value="bar"/>
+            </u:headerParameters>
+        </u:FileUploader>
+        <Button text="{i18n>fileUploaderSubmitBtn}" press="handleUploadPress"/>
+    </l:VerticalLayout>
+</mvc:View>
