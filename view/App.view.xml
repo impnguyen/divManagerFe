@@ -29,40 +29,19 @@
 							<!-- <ObjectStatus title="Status" text="In Stock" state="Success" /> -->
 						</statuses>
 					</ObjectHeader>
-					<!-- scrollable table -->
-					<ScrollContainer height="100%" width="100%" horizontal="false" vertical="true" focusable="true">
-						<Table id="idProductsTable" items="{divs>/value}" busyIndicatorDelay="0">
-							<headerToolbar>
-								<Toolbar>
-									<content>
-										<ToolbarSpacer />
-										<Title text="{i18n>TableHeaderToolbarTitle}" level="H3"/>
-										<ToolbarSpacer />
-									</content>
-								</Toolbar>
-							</headerToolbar>
-							<columns>
-								<Column minScreenWidth="Phone" demandPopin="true" hAlign="Left">
-									<Text text="{i18n>columnSecurity}" />
-								</Column>
-								<Column minScreenWidth="Phone" demandPopin="true" hAlign="Right">
-									<Text text="{i18n>columnValuta}" />
-								</Column>
-								<Column hAlign="End" minScreenWidth="Phone">
-									<Text text="{i18n>columnValue}" />
-								</Column>
-							</columns>
-							<items>
-								<ColumnListItem>
-									<cells>
-										<ObjectIdentifier title="{divs>security}" text="{divs>wkn}" titleActive="true" titlePress="onPressSecurityTitle"/>
-										<Text text="{divs>valutaDate}" />
-										<Text text="{divs>value}" />
-									</cells>
-								</ColumnListItem>
-							</items>
-						</Table>
-					</ScrollContainer>
+					<!-- feature tab bar -->
+					<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" expandable="false" stretchContentHeight="false">
+						<items>
+							<IconTabFilter icon="sap-icon://batch-payments" count="{=${divs>/}.length}" text="{i18n>iconTabBarFilterTitle1}">
+								<!-- dividends -->
+								<mvc:XMLView viewName="mpn.divManager.view.Dividends"/>
+							</IconTabFilter>
+							<IconTabFilter icon="sap-icon://add-document" text="{i18n>iconTabBarFilterTitle2}">
+								<!-- file uploader -->
+								<mvc:XMLView viewName="mpn.divManager.view.FileUpload"/>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
 				</content>
 				<footer>
 					<Toolbar>

@@ -1,0 +1,38 @@
+<mvc:View controllerName="mpn.divManager.controller.Dividends" 
+    xmlns:html="http://www.w3.org/1999/xhtml" 
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" 
+    xmlns="sap.m">
+    <!-- scrollable table -->
+    <ScrollContainer height="100%" width="100%" horizontal="false" vertical="true" focusable="true">
+        <Table id="idProductsTable" items="{divs>/value}" busyIndicatorDelay="0">
+            <!-- <headerToolbar>
+                <Toolbar>
+                    <content>
+                        <ToolbarSpacer />
+                        <ToolbarSpacer />
+                    </content>
+                </Toolbar>
+            </headerToolbar> -->
+            <columns>
+                <Column minScreenWidth="Phone" demandPopin="true" hAlign="Left">
+                    <Text text="{i18n>columnSecurity}" />
+                </Column>
+                <Column minScreenWidth="Phone" demandPopin="true" hAlign="Right">
+                    <Text text="{i18n>columnValuta}" />
+                </Column>
+                <Column hAlign="End" minScreenWidth="Phone">
+                    <Text text="{i18n>columnValue}" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <ObjectIdentifier title="{divs>security}" text="{divs>wkn}" titleActive="true" titlePress="onPressSecurityTitle"/>
+                        <Text text="{divs>valutaDate}" />
+                        <Text text="{divs>value}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </ScrollContainer>
+</mvc:View>
