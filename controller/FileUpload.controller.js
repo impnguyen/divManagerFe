@@ -1,6 +1,6 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/ui/unified/FileUploaderParameter"],
-  function(Controller) {
+  ["sap/ui/core/mvc/Controller", "sap/ui/unified/FileUploaderParameter", "sap/m/MessageBox"],
+  function(Controller, FileUploaderParameter, MessageBox) {
     "use strict";
 
     return Controller.extend("mpn.divManager.controller.FileUpload", {
@@ -53,6 +53,16 @@ sap.ui.define(
           .catch(function(error) {
             debugger;
           });
+      }, 
+
+      /**
+       * show error message if missmatch type was selected
+       * @param {Object} oEvent miss match event object 
+       */
+      handleTypeMissmatch: function(oEvent){
+        MessageBox.warning(
+          this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("fileTypeMissmatch")
+        );
       }
     });
   }
