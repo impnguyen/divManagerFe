@@ -3,11 +3,11 @@
     xmlns:f="sap.ui.layout.form" 
     xmlns:l="sap.ui.layout" 
     xmlns:core="sap.ui.core">
-    <Dialog id="initUserSelection" title="{i18n>InitUserSelectDialogTitle}" >
+    <Dialog type="Message" id="initUserSelection" title="{i18n>InitUserSelectDialogTitle}" >
         <f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
             <f:content>
                 <Label text="{i18n>InitUserSelectDialogUserLabel}" />
-                <Select showSecondaryValues="true" selectedKey="{Country}" items="{users>/value}" id="initUserSelect">
+                <Select showSecondaryValues="true" selectedKey="{Country}" items="{users>/value}" id="initUserSelect"   autoAdjustWidth="true"  forceSelection="true" icon="sap-icon://dropdown">
                     <items>
                         <core:ListItem text="{users>firstname} {users>lastname}" additionalText="{users>portfolioid}" key="{users>portfolioid}"/>
                     </items>
