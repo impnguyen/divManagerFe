@@ -53,6 +53,7 @@
       .src(`${env.buildPath}/**/*`)
       .pipe(replace("localhost", env.srvBaseUrl))
       .pipe(gulp.dest("build/"));
+      done();
   });
 
   gulp.task("replaceUi5Lib", () => {
@@ -65,6 +66,7 @@
         )
       )
       .pipe(gulp.dest("build/"));
+      done();
   });
 
   gulp.task("ui5preload", function() {
