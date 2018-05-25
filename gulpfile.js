@@ -45,12 +45,11 @@
   });
 
   gulp.task("copy", () => {
-    gulp.src(env.copySrcFiles).pipe(gulp.dest(env.buildPath));
-    done();
+    return gulp.src(env.copySrcFiles).pipe(gulp.dest(env.buildPath));
   });
 
   gulp.task("replaceSrvEndpoint", () => {
-    gulp
+    return gulp
       .src(`${env.buildPath}/**/*`)
       .pipe(replace("localhost", env.srvBaseUrl))
       .pipe(gulp.dest("build/"));
@@ -58,7 +57,7 @@
   });
 
   gulp.task("replaceUi5Lib", () => {
-    gulp
+    return gulp
       .src(`${env.buildPath}/${env.appEntry}`)
       .pipe(
         replace(
