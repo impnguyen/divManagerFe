@@ -11,7 +11,7 @@ sap.ui.define(
       formatter: formatter, 
       
       /**
-       * setup models in onInit Hook
+       * setup user model in onInit Hook
        */
       onInit: function() {
         //setup users
