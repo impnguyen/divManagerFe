@@ -1,7 +1,9 @@
-# divManagerFe
+## divManagerFe
 dividends manager build with openui5
 
-# test automation
+## test automation
+
+### selenium
 1. install package 'selenium-standalone' globally
 2. install selenium and chromedriver with 'selenium-standalone install --drivers.chrome.version=2.38 --drivers.chrome.baseURL=https://chromedriver.storage.googleapis.com'
    (get version: https://chromedriver.storage.googleapis.com/)
