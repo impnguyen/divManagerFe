@@ -20,22 +20,11 @@ sap.ui.define(
        * on upload csv file with dividends
        */
       onUploadPress: function() {
-        var oFileUploader = this.byId("divFileUploader");
+        let oFileUploader = this.byId("divFileUploader");
+        let formData = new FormData();
+        let that = this;
 
-        //add user id parameters
-        oFileUploader.addParameter(
-          new sap.ui.unified.FileUploaderParameter({
-            name: "userid",
-            value: this.getOwnerComponent()
-              .getModel("currentUser")
-              .getData().id
-          })
-        );
-
-        // oFileUploader.upload();
-
-        var formData = new FormData();
-        formData.append("divcsv", oFileUploader.getValue());
+        formData.append("divcsv", oFileUploader.FUEl.files[0]);
         formData.append(
           "userid",
           this.getOwnerComponent()
@@ -48,10 +37,23 @@ sap.ui.define(
           body: formData
         })
           .then(function(response) {
-            debugger;
+            if (response.status !== 200){
+              MessageBox.error(
+                that.getOwnerComponent().getModel("i18n").getResourceBundle().getText("fileUploadServerError")
+              );
+            } else {
+              MessageBox.success(
+                that.getOwnerComponent().getModel("i18n").getResourceBundle().getText("fileUploadSuccessful")
+              );
+
+              //reset fileuploader
+              oFileUploader.setValue();
+            }
           })
           .catch(function(error) {
-            debugger;
+            MessageBox.error(
+              that.getOwnerComponent().getModel("i18n").getResourceBundle().getText("fileUploadServerError")
+            );
           });
       }, 
 
