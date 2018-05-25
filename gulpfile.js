@@ -41,7 +41,7 @@
   });
 
   gulp.task("cleanBuild", () => {
-    return gulp.src(env.buildPath).pipe(clean({ force: true }));
+    return gulp.src(env.buildPath, { allowEmpty: true }).pipe(clean({ force: true }));
   });
 
   gulp.task("copy", () => {
