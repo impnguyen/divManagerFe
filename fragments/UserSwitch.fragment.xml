@@ -3,7 +3,7 @@
     xmlns:f="sap.ui.layout.form" 
     xmlns:l="sap.ui.layout" 
     xmlns:core="sap.ui.core">
-    <Dialog id="userSwitchDialog" title="{i18n>UserSwitchDialogTitle}">
+    <Dialog id="userSwitchDialog" title="{i18n>UserSwitchDialogTitle}" type="Message">
         <f:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>UserSwitchFormTitle}" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
             <f:content>
                 <Label text="{i18n>UserSwitchFormFirstname}" />
