@@ -11,7 +11,7 @@ sap.ui.define(
       formatter: formatter, 
       
       /**
-       * setup models in onInit Hook
+       * setup user model in onInit Hook
        */
       onInit: function() {
         //setup users
@@ -40,9 +40,9 @@ sap.ui.define(
               tmpUser = selectedUser;
             }
 
-            this.getView().setModel(new JSONModel(tmpUser), "currentUser");
+            this.getOwnerComponent().setModel(new JSONModel(tmpUser), "currentUser");
             return this.setupDividends(
-              this.getView().getModel("currentUser").getData().portfolioid
+              this.getOwnerComponent().getModel("currentUser").getData().portfolioid
             );
           })
           .then(dividendsData => {
@@ -140,7 +140,7 @@ sap.ui.define(
           .getBindingContext("users")
           .getModel();
 
-        this.getView().setModel(
+        this.getOwnerComponent().setModel(
           new JSONModel(model.getProperty(selPath)),
           "currentUser"
         );
@@ -188,7 +188,7 @@ sap.ui.define(
           .getModel();
         var oSelUser = model.getProperty(selPath);
 
-        this.getView().setModel(new JSONModel(oSelUser), "currentUser");
+        this.getOwnerComponent().setModel(new JSONModel(oSelUser), "currentUser");
 
         //setup dividends model
         this.setupDividends(oSelUser.portfolioid)
