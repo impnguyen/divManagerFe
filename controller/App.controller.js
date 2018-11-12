@@ -2,7 +2,7 @@ sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
-    "mpn/divManager/model/formatter"
+    "mpn/divManager/model/formatter",
   ],
   function(Controller, JSONModel, formatter) {
     "use strict";
@@ -240,7 +240,7 @@ sap.ui.define(
        */
       onCancelStockDetails: function(oEvent) {
         oEvent.getSource().getParent().close();
-      }
+      }, 
     });
   }
 );

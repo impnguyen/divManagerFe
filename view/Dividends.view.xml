@@ -1,10 +1,17 @@
 <mvc:View controllerName="mpn.divManager.controller.Dividends" 
     xmlns:html="http://www.w3.org/1999/xhtml" 
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" 
+    xmlns:mvc="sap.ui.core.mvc" height="100%"
     xmlns="sap.m">
+    <Toolbar>
+        <SearchField
+            liveChange="onSearchDividends"
+            width="100%" />
+        <Button icon="sap-icon://refresh" press="onRefreshDividends" />
+    </Toolbar>
     <!-- scrollable table -->
-    <ScrollContainer height="100%" width="100%" horizontal="false" vertical="true" focusable="true">
-        <Table id="idProductsTable" items="{divs>/value}" busyIndicatorDelay="0">
+    <ScrollContainer height="2000px" width="100%" horizontal="false" vertical="true" focusable="true">
+        <Table id="idProductsTable" items="{divs>/value}" busyIndicatorDelay="0" 
+        sticky="ColumnHeaders,HeaderToolbar,InfoToolbar" alternateRowColors="true" backgroundDesign="Solid">
             <columns>
                 <Column minScreenWidth="Phone" demandPopin="true" hAlign="Left">
                     <Text text="{i18n>columnSecurity}" />

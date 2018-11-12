@@ -96,5 +96,11 @@
     });
   });
 
-  // gulp.task("default", ["connect"]);
+  gulp.task('build', gulp.series(
+    "cleanBuild",
+    "copy",
+    "replaceSrvEndpoint",
+    "replaceUi5Lib",
+    "ui5preload"
+  ));
 })();

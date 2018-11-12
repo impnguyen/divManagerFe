@@ -1,6 +1,7 @@
 <mvc:View controllerName="mpn.divManager.controller.App" 
 	xmlns:html="http://www.w3.org/1999/xhtml" 
 	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
 	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" 
 	xmlns="sap.m">
 	<App>
@@ -18,37 +19,42 @@
 					<core:Fragment fragmentName="mpn.divManager.fragments.StockDetails" type="XML"/>
 				</dependents>
 				<content>
-					<!-- object header -->
-					<ObjectHeader title="{i18n>ObjectHeaderTitle}" backgroundDesign="Solid">
-						<attributes>
-							<ObjectAttribute title="{i18n>ObjectHeaderFirstnameTitle}" text="{currentUser>/firstname}" />
-							<ObjectAttribute title="{i18n>ObjectHeaderlastnameTitle}" text="{currentUser>/lastname}" />
-							<ObjectAttribute title="{i18n>ObjectHeaderportIdTitle}" text="{currentUser>/portfolioid}" />
-						</attributes>
-						<statuses>
-							<!-- <ObjectStatus title="Status" text="In Stock" state="Success" /> -->
-						</statuses>
-					</ObjectHeader>
-					<!-- feature tab bar -->
-					<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" expandable="false" stretchContentHeight="false">
-						<items>
-							<IconTabFilter icon="sap-icon://batch-payments" count="{=${divs>/}.length}" text="{i18n>iconTabBarFilterTitle1}">
-								<!-- dividends -->
-								<mvc:XMLView viewName="mpn.divManager.view.Dividends"/>
-							</IconTabFilter>
-							<IconTabFilter icon="sap-icon://add-document" text="{i18n>iconTabBarFilterTitle2}">
-								<!-- file uploader -->
-								<mvc:XMLView viewName="mpn.divManager.view.FileUpload"/>
-							</IconTabFilter>
-						</items>
-					</IconTabBar>
+					<l:FixFlex class="fixFlexVertical">
+						<l:fixContent>
+						<!-- object header -->
+							<ObjectHeader title="{i18n>ObjectHeaderTitle}" backgroundDesign="Solid" fullScreenOptimized="true" responsive="true" number="{divMeta>/sum}" numberUnit="€">
+								<attributes>
+									<ObjectAttribute title="{i18n>ObjectHeaderFullNameTitle}" text="{currentUser>/firstname} {currentUser>/lastname}" />
+									<ObjectAttribute title="{i18n>ObjectHeaderportIdTitle}" text="{currentUser>/portfolioid}" />
+								</attributes>
+								<statuses>
+									<!-- <ObjectStatus title="Auszahlungen" text="{divMeta>/sum} €" state="Success" /> -->
+								</statuses>
+							</ObjectHeader>
+						</l:fixContent>
+						<l:flexContent>
+							<!-- feature tab bar -->
+							<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" expandable="false"  headerMode="Inline"  stretchContentHeight="false">
+								<items>
+									<IconTabFilter count="{=${divs>/}.length}" text="{i18n>iconTabBarFilterTitle1}">
+										<!-- dividends -->
+										<mvc:XMLView viewName="mpn.divManager.view.Dividends"/>
+									</IconTabFilter>
+									<IconTabFilter text="{i18n>iconTabBarFilterTitle2}">
+										<!-- file uploader -->
+										<mvc:XMLView viewName="mpn.divManager.view.FileUpload"/>
+									</IconTabFilter>
+								</items>
+							</IconTabBar>
+						</l:flexContent>
+					</l:FixFlex>
 				</content>
 				<footer>
-					<Toolbar>
-						<Text text="{i18n>footerDivSumText}" />
+					<OverflowToolbar>
 						<ToolbarSpacer/>
-						<Text text="{divMeta>/sum} €" />
-					</Toolbar>
+						<Text text="" />
+						<ToolbarSpacer/>
+					</OverflowToolbar>
 				</footer>
 			</Page>
 		</pages>
