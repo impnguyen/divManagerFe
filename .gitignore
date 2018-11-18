@@ -60,4 +60,5 @@ typings/
 # custom 
 build/
 package-lock.json
-
+/test/webdriveriotest/errorShots/
+dist

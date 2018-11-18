@@ -16,20 +16,9 @@
     ui5Resource: "../libs/openui5-runtime-1.52.9/resources/sap-ui-core.js",
     srvBaseUrl: "192.168.20.20",
     copySrcFiles: [
-      "*controller/**/*",
-      "*css/**/*",
-      "*fragments/**/*",
-      "*google/**/*",
-      "*i18n/**/*",
-      "*icons/**/*",
-      "*model/**/*",
-      "*view/**/*",
-      "Component.js",
-      "index.html",
-      "manifest.json",
-      "manifest.appcache"
+      "webapp/**"
     ],
-    lintSrcFiles: ["**/*.js", "!node_modules/**"]
+    lintSrcFiles: ["webapp/**/*.js", "!node_modules/**"]
   };
 
   gulp.task("lint", () => {
@@ -96,5 +85,11 @@
     });
   });
 
-  // gulp.task("default", ["connect"]);
+  gulp.task('build', gulp.series(
+    "cleanBuild",
+    "copy",
+    "replaceSrvEndpoint",
+    "replaceUi5Lib",
+    "ui5preload"
+  ));
 })();

@@ -1,0 +1,62 @@
+<mvc:View controllerName="mpn.divManager.controller.App" 
+	xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" 
+	xmlns="sap.m">
+	<App>
+		<pages>
+			<Page title="{i18n>title}">
+				<headerContent>
+					<Button icon="sap-icon://customer" tooltip="{i18n>headerCustomerSwitchButton}" press="onOpenUserSwitchPressed" />
+				</headerContent>
+				<dependents>
+					<!-- intial user selection dialog -->
+					<core:Fragment fragmentName="mpn.divManager.fragments.InitialUserSelection" type="XML"/>
+					<!-- user switch dialog -->
+					<core:Fragment fragmentName="mpn.divManager.fragments.UserSwitch" type="XML"/>
+					<!-- stock detail dialog -->
+					<core:Fragment fragmentName="mpn.divManager.fragments.StockDetails" type="XML"/>
+				</dependents>
+				<content>
+					<l:FixFlex class="fixFlexVertical">
+						<l:fixContent>
+						<!-- object header -->
+							<ObjectHeader title="{i18n>ObjectHeaderTitle}" backgroundDesign="Solid" fullScreenOptimized="true" responsive="true" number="{divMeta>/sum}" numberUnit="€">
+								<attributes>
+									<ObjectAttribute title="{i18n>ObjectHeaderFullNameTitle}" text="{currentUser>/firstname} {currentUser>/lastname}" />
+									<ObjectAttribute title="{i18n>ObjectHeaderportIdTitle}" text="{currentUser>/portfolioid}" />
+								</attributes>
+								<statuses>
+									<!-- <ObjectStatus title="Auszahlungen" text="{divMeta>/sum} €" state="Success" /> -->
+								</statuses>
+							</ObjectHeader>
+						</l:fixContent>
+						<l:flexContent>
+							<!-- feature tab bar -->
+							<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" expandable="false"  headerMode="Inline"  stretchContentHeight="false">
+								<items>
+									<IconTabFilter count="{=${divs>/}.length}" text="{i18n>iconTabBarFilterTitle1}">
+										<!-- dividends -->
+										<mvc:XMLView viewName="mpn.divManager.view.Dividends"/>
+									</IconTabFilter>
+									<IconTabFilter text="{i18n>iconTabBarFilterTitle2}">
+										<!-- file uploader -->
+										<mvc:XMLView viewName="mpn.divManager.view.FileUpload"/>
+									</IconTabFilter>
+								</items>
+							</IconTabBar>
+						</l:flexContent>
+					</l:FixFlex>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<Text text="" />
+						<ToolbarSpacer/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

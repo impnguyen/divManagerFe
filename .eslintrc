@@ -38,7 +38,7 @@
         "no-unused-expressions": 1,
         "no-use-before-define": [1, "nofunc"],
         "no-warning-comments": 1,
-        "strict": 1,
+        "strict": "off",
         "valid-jsdoc": [1, {
             "requireReturn": false
         }],
